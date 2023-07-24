@@ -1,0 +1,22 @@
+.heading-sequel{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.comtainer-flexx{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 300px;
+    padding-right: 300px;
+    margin: 5px;
+    margin-bottom: 5px;
+}
+hr{
+    
+    margin:40px;
+    align-items: center;
+}
