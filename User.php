@@ -1,23 +1,20 @@
 <?php 
     include_once('config.php');
 
-    class User{
-        public $id;
-        public $name;
-        public $email;
-        public $password;
-        public $phone;
-        public $address;
-        public $role;
-
-        public function __construct($id, $name, $email, $password, $phone, $address, $role){
-            $this->id = $id;
+    class User {
+        private $userId;
+        private $name;
+        private $email;
+        // Add other user details
+    
+        public function __construct($userId, $name, $email) {
+            $this->userId = $userId;
             $this->name = $name;
             $this->email = $email;
-            $this->password = $password;
-            $this->phone = $phone;
-            $this->address = $address;
-            $this->role = $role;
+            // Initialize other user details here
         }
+    
+        // Add getters and setters for properties
     }
+    
 ?>
