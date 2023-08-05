@@ -7,6 +7,7 @@ This is a hotel site that allows users to book rooms and view the rooms availabl
 ## Author
 
 **[Hezekiah Elisha](https://github.com/Hezekiah-Elisha)**
+**[Faren Acheng](https://github.com/faytee21)**
 
 ## Features
 
