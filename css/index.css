@@ -24,11 +24,15 @@ a{
 }
 
 header{
-    height:8vh;
-    background:blueviolet;
+    height: 11vh;
+    background:rgb(226, 220, 240);
 }
 .logo img{
-    width:120px;
+    height: 48px;
+    float: left;
+    font-size: 30px;
+    padding-right: 100px;
+
 }
 header nav{
     display:flex;
@@ -62,7 +66,7 @@ header ul li{
 header ul li a{
     font-size: 1.2rem;
     font-weight:400;
-    color:white;
+    color:black;
     transition:0.5s;
     -webkit-transition:0.5s;
     -moz-transition:0.5s;
@@ -142,8 +146,8 @@ header ul li a{
     margin:20% 0 0 10%;
 }
 .home h1{
-    font-size:80px;
-    font-weight:400;
+    font-size:50px;
+    font-weight:900;
 }
 .home p{
     font-weight:400;
@@ -293,7 +297,7 @@ input{
 }
 .heading h2{
     font-size:30px;
-    font-weight:400;
+    font-weight:900;
     padding-left:5%;
     margin:20px 0 40px 0;
     color:#222222;
@@ -337,7 +341,7 @@ input{
     grid-row-gap:30px;
 }
 .wrapper h2{
-    font-weight:400;
+    font-weight:900;
 }
 .wrapper p{
     margin:20px 0 50px 0;
