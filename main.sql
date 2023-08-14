@@ -7,7 +7,9 @@ use hotel_site;
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL
 );
 
 -- Rooms table

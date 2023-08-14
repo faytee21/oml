@@ -1,4 +1,7 @@
 <?php
+
+include_once('../config.php');
+
 class Room {
     private $roomId;
     private $roomType;
