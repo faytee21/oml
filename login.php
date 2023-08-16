@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    include_once "User.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +15,13 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="">
+        <form action="login.php" method="POST">
             <h1>Log In</h1>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>  <i class="bi bi-person-fill"></i>
+                <input type="email" placeholder="Email" required name="email">  <i class="bi bi-person-fill"></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required><i class="bi bi-lock-fill"></i>
+                <input type="password" placeholder="Password" required name="password"><i class="bi bi-lock-fill"></i>
             </div>
 
             <div class="remember-forgot">
@@ -33,6 +38,23 @@
 
 -->
         </form>
+
+        <?php
+            if(isset($_POST['email']) && isset($_POST['password'])){
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+
+                if (empty($email) || empty($password)) {
+                    return "complete registration form";
+                } else {
+                    $email = trim($email);
+                    $password = trim($password);
+
+                    echo User::login($email, $password);
+                }
+
+            }
+        ?>
     </div>
 </body>
 </html>

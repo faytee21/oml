@@ -2,7 +2,7 @@
     $db_host = "localhost";
     $db_user = "root";
     $db_pass = "";
-    $db_name = "";
+    $db_name = "hotels_db";
 
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
