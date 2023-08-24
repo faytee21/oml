@@ -1,8 +1,8 @@
 <?php
     include_once './config.php';
 
-    class Reservation {
-        public $conn;
+    class Reservation {           
+        public $conn;                   
 
         public function __construct() {
             $this->conn = $GLOBALS['conn'];

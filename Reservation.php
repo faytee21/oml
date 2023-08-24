@@ -50,13 +50,26 @@ class Reservation {
 
 
     //  check if there are any reservations using  a static method from a specific user using user_id
-    public static function checkUserReservation($userId, $roomId, $startDate, $endDate) {
+    public static function checkUserReservation($userId) {
         $conn = $GLOBALS['conn'];
-        $sql = "SELECT * FROM reservations WHERE user_id = $userId AND room_id = $roomId AND start_date = '$startDate' AND end_date = '$endDate'";
+        $sql = "SELECT * FROM reservations WHERE user_id = $userId ";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         if ($row) {
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    // get reservation by user id
+    public static function getReservationByUserId($userId) {
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT * FROM reservations WHERE user_id = $userId ";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        if ($row) {
+            return $row;
         } else {
             return false;
         }

@@ -75,14 +75,56 @@
         ?>
         <div class="col-md-10">
           <h2>Welcome <span class="name"><?php echo User::getNamebyId($_SESSION['id']) ?></span>!</h2>
-          <?php 
-             if(!Reservation::checkUserReservation($_SESSION('id'))){    
-                     
-             }   ?>
-          <p>You haven't Booked a room yet?</p>
-          <a href="book_a_room.php">
-            <button class="btn btn-mine">Book Here</button>
-          </a>
+          <div class="row">
+            <h3>Your Profile</h3>
+            <hr>
+            <div class="col-md-6">
+              <img src="./image/profile_image.png" class="img-fluid profile-image" alt="">
+              <?php
+              $info = User::getUser($_SESSION['id']);
+              ?>
+              <h4>Name: <?php             
+              // print_r($info);
+              echo $info["username"]; ?></h4>
+              <p>Email: <?php echo $info["email"] ?></p>
+
+              
+            </div>
+            <div class="col-md-6">
+              <h3>Reservation</h3>
+              <hr>
+              <div>
+              <?php 
+            if (!Reservation::checkUserReservation($_SESSION['id'])){    
+            ?>
+                <p>You haven't Booked a room yet?</p>
+                <a href="book_a_room.php">
+                  <button class="btn btn-mine">Book Here</button>
+                s</a>
+              <?php  
+             }else{
+              ?>
+                <p>You have booked a room</p>
+                <a href="view_reservation.php">
+                  <button class="btn btn-mine">View Reservation</button>
+                </a>
+                <?php
+                  $reservation_info = Reservation::getReservationByUserId($_SESSION['id']);
+
+                
+                ?>
+
+                <p>Start day:<?php echo $reservation_info['start_date']; ?> </p>
+                <p>End day:<?php echo $reservation_info['end_date']; ?> </p>
+              <?php
+             }
+              ?>
+
+              </div>
+              
+            </div>
+          </div>
+
 
         </div>
       </div>
