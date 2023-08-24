@@ -155,6 +155,15 @@ class User {
             return "Error: $sql $conn->error";
         }
     }
+
+    public static function getNamebyId ($id){
+        global $conn;
+        $sql = "SELECT username FROM users WHERE user_id = $id";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['username'];
+    }
+
 }
 
 

@@ -1,14 +1,14 @@
 <?php
-    session_start();
-    require_once('User.php');
+    // session_start();
+    // require_once('User.php');
 
     // User::sessionInfo();
 
-    //check is session is valid
-    if(!isset($_SESSION['id'])){
-        header('Location: login.php');
-        exit;
-    }
+    // //check is session is valid
+    // if(!isset($_SESSION['id'])){
+    //     header('Location: login.php');
+    //     exit;
+    // }
 
 ?>
 <!DOCTYPE html>
@@ -72,12 +72,23 @@
         <?php
           include_once "includes/sidenav.php";
         ?>
-        <div class="col-md-10">
-          <h2>Welcome <span class="name"><?php echo User::getNamebyId($_SESSION['id']) ?></span>!</h2>
-          <p>You haven't Booked a room yet?</p>
-          <a href="book_a_room.php">
-            <button class="btn btn-mine">Book Here</button>
-          </a>
+        <div class="col-md-10 main_content">
+            <h2 class="text-center">Book Room</h2>
+            <form action="">
+                <div>
+                    <input type="radio" value="Room_1" name="room_id" id=""><span>Room 1</span>
+                    <input type="radio" value="Room_2" name="room_id" id=""><span>Room 1</span>
+                    <input type="radio" value="Room_3" name="room_id" id=""><span>Room 1</span>
+                    <input type="radio" value="Room_4" name="room_id" id=""><span>Room 1</span>
+                    <input type="radio" value="Room_5" name="room_id" id=""><span>Room 1</span>
+                    <input type="radio" value="Room_6" name="room_id" id=""><span>Room 1</span>
+                </div>
+                <label for="datePicker">Select a start date:</label>
+                <input type="date" id="datePicker" name="date" min="" class="custom-datepicker">
+                <label for="datePicker2">Select End date</label>
+                <input type="date" id="datePicker2" name="date" min="" class="custom-datepicker">
+                <button class="">Book Room</button>
+            </form>
 
         </div>
       </div>
@@ -89,6 +100,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  <script src="./js/date.js"></script>
+  <script>
+
+  </script>
     
 </body>
 </html>

@@ -1,4 +1,5 @@
 --sql
+CREATE DATABASE IF NOT EXISTS hotels_db;
 use hotels_db;
 
 -- Create the tables
@@ -15,9 +16,11 @@ CREATE TABLE IF NOT EXISTS users (
 -- Rooms table
 CREATE TABLE IF NOT EXISTS rooms (
     room_id INT PRIMARY KEY AUTO_INCREMENT,
+    room_name VARCHAR(100) NOT NULL,
     room_type VARCHAR(50) NOT NULL,
     capacity INT NOT NULL,
     amenities TEXT,
+    booked BOOLEAN DEFAULT FALSE,
     price DECIMAL(10,2) NOT NULL,
     time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     -- Add other room-related columns like images, description, etc.
@@ -26,6 +29,9 @@ CREATE TABLE IF NOT EXISTS rooms (
 -- Conference Rooms table (inherits from Rooms)
 CREATE TABLE IF NOT EXISTS conference_rooms (
     room_id INT PRIMARY KEY,
+    conference_room_name VARCHAR(100) NOT NULL,
+    projector BOOLEAN DEFAULT FALSE,
+    booked BOOLEAN DEFAULT FALSE,
     conference_reg_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     -- Additional columns specific to conference rooms
     -- You can add foreign keys to the rooms table for room_id
@@ -43,7 +49,7 @@ CREATE TABLE IF NOT EXISTS reservations (
     FOREIGN KEY (room_id) REFERENCES rooms(room_id)
 );
 
--- Reviews table
+-- Reviews table  
 CREATE TABLE IF NOT EXISTS reviews (
     review_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
