@@ -2,6 +2,7 @@
     session_start();
     include_once "Reservation.php";
     include_once "includes/check_use.php";
+    include_once "User.php";
 
 
 ?>
@@ -22,7 +23,13 @@
         <div class="main_content">
 
             <h2 class="title">All Researvations</h2>
-            <p>Welcome To the Dashboard</p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
             
         </div>        
     </div>

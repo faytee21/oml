@@ -2,7 +2,9 @@
     session_start();
     // include_once "Admin.php";
     include_once "includes/check_use.php";
-    include_once "Room.php";
+    include_once "ConferenceRoom.php";
+
+    $conference_room = new ConferenceRoom();
 
 ?>
 <!DOCTYPE html>
@@ -20,68 +22,56 @@
 <div class="dash-container">
         <?php include_once "./includes/sidenav.php"; ?>
         <div class="main_content">
-            <h2 class="title">Add Room  </h2>
-            <form action="add_rooms.php" method="POST" class="d-flex flex-column">
-                <label for="">Room Name:</label>
-                <input type="text" name="room_name" placeholder="Room name">
-                <label for="">Room Type:</label>
-                <select name="room_type" id="">
-                    <option value="standard_room">Standard Room</option>
-                    <option value="deluxe _room" >Deluxe Rooms</option>
-                    <option value="suite_room">Suite Rooms</option>
-                </select>
+            <h2 class="title">Add Conference Room  </h2>
+            <form action="add_conference_rooms.php" method="POST" class="d-flex flex-column">
+                <label for="">Conference Room Name:</label>
+                <input type="text" name="conference_room_name" placeholder="Conference Room name">
                 <label for="">Capacity of the room</label>
-                <input type="number" name="capacity" placeholder="Capacity of the room" min="0" max="4">
-                <label for="">Room Price:</label>
-                <input type="number" name="price" placeholder="Room price" min="0">
-                <label for="">Room Amenities</label>
-                <textarea name="amenities" id="" cols="30" rows="10"></textarea>
-                <button type="submit" name="add_room">Add room</button>
+                <input type="number" name="capacity" placeholder="Capacity of the room" min="0" max="50">
+                <label for="">Conference Room Price:</label>
+                <input type="number" name="price" placeholder="Conference Room price" min="0">
+                <label for="">Conference Room Description</label>
+                <textarea name="description" id="" cols="30" rows="10"></textarea>
+                <button type="submit" name="add_conference_room">Add room</button>
                 <?php
-                    if(isset($_POST['add_room'])){
-                        $name = $_POST['room_name'];
-                        $type = $_POST['room_type'];
+                    if(isset($_POST['add_conference_room'])){
+                        $name = $_POST['conference_room_name'];
                         $capacity = $_POST['capacity'];
                         $price = $_POST['price'];
-                        $amenities = $_POST['amenities'];
-                        $room = new Room();
-                        $result = $room->addRoom($name, $type, $capacity, $price, $amenities);
+                        $description = $_POST['description'];
+                        $result = $conference_room->addConferenceRoom($name, $capacity, $price, $description);
                         if($result){
-                            echo "<script>alert('Room added successfully')</script>";
+                            echo "<script>alert('Conference Room added successfully')</script>";
                         }else{
-                            echo "<script>alert('Room not added')</script>";
+                            echo "<script>alert('Conference Room not added')</script>";
                         }
                     }
                 ?>
             </form>
 
         <div class="container">
-            <h2>All Rooms</h2>
+            <h2>All Conference Rooms</h2>
             <table class="table table-striped">
                 <tr>
                     <thead>
                         <th>#</th>
-                        <th>Room name</th>
-                        <th>Room Type</th>
-                        <th>Room Capacity</th>
+                        <th>Conference Room name</th>
+                        <th>Capacity</th>
                         <th>Action</th>
                     </thead>
                 </tr>
                 <tbody>
                     <?php
-                    $category = new Room();
-                    $rooms = $category->getRooms();
+                    $rooms = $conference_room->getConferenceRooms();
 
                     if($rooms){
                         while($row = mysqli_fetch_assoc($rooms)){
                             $id = $row['room_id'];
-                            $name = $row['room_name'];
-                            $type = $row['room_type'];
+                            $name = $row['conference_room_name'];
                             $capacity = $row['capacity'];
                             echo "<tr>
                                     <td>$id</td>
                                     <td>$name</td>
-                                    <td>$type</td>
                                     <td>$capacity</td>
                                     <td><button class='btn btn-dark'> <i class='bi bi-pencil-square'></i> Edit</button> <button class='btn btn-danger'> <i class='bi bi-trash3'></i> Delete</button> </td>
                                 </tr>";

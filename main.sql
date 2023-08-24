@@ -28,10 +28,14 @@ CREATE TABLE IF NOT EXISTS rooms (
 
 -- Conference Rooms table (inherits from Rooms)
 CREATE TABLE IF NOT EXISTS conference_rooms (
-    room_id INT PRIMARY KEY,
+    room_id INT PRIMARY KEY AUTO_INCREMENT,
     conference_room_name VARCHAR(100) NOT NULL,
+    capacity INT NOT NULL,
     projector BOOLEAN DEFAULT FALSE,
     booked BOOLEAN DEFAULT FALSE,
+    booking_date DATE,
+    price DECIMAL(10,2) NOT NULL,
+    description TEXT,
     conference_reg_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     -- Additional columns specific to conference rooms
     -- You can add foreign keys to the rooms table for room_id

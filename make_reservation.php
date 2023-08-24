@@ -1,14 +1,21 @@
 <?php
-    // session_start();
-    // require_once('User.php');
+    session_start();
+    require_once('User.php');
+    require_once("Room.php");
+    require_once("Reservation.php");
+
+    $rooms = new Room();
 
     // User::sessionInfo();
 
-    // //check is session is valid
-    // if(!isset($_SESSION['id'])){
-    //     header('Location: login.php');
-    //     exit;
-    // }
+    //check is session is valid
+    if(!isset($_SESSION['id'])){
+        header('Location: login.php');
+        exit;
+    }
+
+
+    $type = $_GET['type'];
 
 ?>
 <!DOCTYPE html>
@@ -74,20 +81,44 @@
         ?>
         <div class="col-md-10 main_content">
             <h2 class="text-center">Book Room</h2>
-            <form action="">
-                <div>
-                    <input type="radio" value="Room_1" name="room_id" id=""><span>Room 1</span>
-                    <input type="radio" value="Room_2" name="room_id" id=""><span>Room 1</span>
-                    <input type="radio" value="Room_3" name="room_id" id=""><span>Room 1</span>
-                    <input type="radio" value="Room_4" name="room_id" id=""><span>Room 1</span>
-                    <input type="radio" value="Room_5" name="room_id" id=""><span>Room 1</span>
-                    <input type="radio" value="Room_6" name="room_id" id=""><span>Room 1</span>
-                </div>
+            <form action="make_reservation.php?type=<?php echo $type?>" method="POST">
+                <div class="d-flex justify-content-center ">
+                    <?php
+                        $result = $rooms->getRooms($type);
+                        if ($result){
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<input type='radio' value='".$row['room_id']."' name='room_id' id=''><p>".$row['room_name']."</p>";
+                          }
+                        }
+
+                    ?>
+
+                </div>  
                 <label for="datePicker">Select a start date:</label>
-                <input type="date" id="datePicker" name="date" min="" class="custom-datepicker">
+                <input type="date" id="datePicker" name="start_date" min="" class="custom-datepicker">
                 <label for="datePicker2">Select End date</label>
-                <input type="date" id="datePicker2" name="date" min="" class="custom-datepicker">
-                <button class="">Book Room</button>
+                <input type="date" id="datePicker2" name="end_date" min="" class="custom-datepicker">
+                <button class=""type="submit" name="book_room">Book Room</button>
+
+                <?php 
+
+                  if(isset($_POST['book_room'])){
+                    $room_id = $_POST['room_id'];
+                    $start_date = $_POST['start_date'];
+                    $end_date = $_POST['end_date'];
+                    $user_id = $_SESSION['id'];
+
+                    $res = new Reservation($user_id,$room_id, $start_date, $end_date);
+
+                    $result = $res->makeReservation();
+                    if($result){
+                      echo "<script>alert('Room booked successfully')</script>";
+                    }else{
+                      echo "<script>alert('Room not booked')</script>";
+                    }
+                  }
+
+                ?>
             </form>
 
         </div>

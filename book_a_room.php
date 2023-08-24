@@ -1,14 +1,18 @@
 <?php
-    // session_start();
-    // require_once('User.php');
+    session_start();
+    require_once('User.php');
+    // require_once('includes/check_user.php');
+    include_once('Room.php');
+    $room = new Room();
 
     // User::sessionInfo();
 
-    // //check is session is valid
-    // if(!isset($_SESSION['id'])){
-    //     header('Location: login.php');
-    //     exit;
-    // }
+    //check is session is valid
+    if(!isset($_SESSION['id'])){
+        header('Location: login.php');
+        exit;
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -82,13 +86,15 @@
                         </div>
                         <div class="col-md-6">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nemo debitis. Repellat, dolorem vitae magni perspiciatis ea ipsum sunt asperiores itaque. Ea non saepe numquam molestias asperiores ullam ipsa exercitationem.</p>    
-                            <p>Ksh 2000</p>
-                            <p>Available: 5</p>
+                            <p><?php echo $room->getRoomAveragePrice("standard_room"); ?></p>
+                            <p>Available: <?php echo $room->getRoomTypeCount("standard_room"); ?></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="standard_room.php">
                                     <button class="btn btn-warning">See  More</button>
                                 </a>
-                                <button class="btn btn-mine">Book Now</button>
+                                <a href="make_reservation.php?type=standard_room">
+                                  <button class="btn btn-mine">Book Now</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -105,13 +111,15 @@
                         </div>
                         <div class="col-md-6">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nemo debitis. Repellat, dolorem vitae magni perspiciatis ea ipsum sunt asperiores itaque. Ea non saepe numquam molestias asperiores ullam ipsa exercitationem.</p>    
-                            <p>Ksh 2000</p>
-                            <p>Available: 5</p>
+                            <p><?php echo $room->getRoomAveragePrice("deluxe _room"); ?></p>
+                            <p>Available: <?php echo $room->getRoomTypeCount("standard_room"); ?></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="standard_room.php">
                                     <button class="btn btn-warning">See  More</button>
                                 </a>
-                                <button class="btn btn-mine">Book Now</button>
+                                <a href="make_reservation.php?type=deluxe _room">
+                                  <button class="btn btn-mine">Book Now</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -126,13 +134,15 @@
                         </div>
                         <div class="col-md-6">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nemo debitis. Repellat, dolorem vitae magni perspiciatis ea ipsum sunt asperiores itaque. Ea non saepe numquam molestias asperiores ullam ipsa exercitationem.</p>    
-                            <p>Ksh 2000</p>
-                            <p>Available: 5</p>
+                            <p><?php echo $room->getRoomAveragePrice("suite_room"); ?></p>
+                            <p>Available: <?php echo $room->getRoomTypeCount("standard_room"); ?></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="standard_room.php">
                                     <button class="btn btn-warning">See  More</button>
                                 </a>
-                                <button class="btn btn-mine">Book Now</button>
+                                <a href="make_reservation.php?type=suite_room">
+                                  <button class="btn btn-mine">Book Now</button>
+                                </a> 
                             </div>
                         </div>
                     </div>

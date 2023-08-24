@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="main_content">
-        <h1 class="title text-center">Welcome to Sportfit collections</h1>
+        <h1 class="title text-center">Welcome to 489Hotels & Suits</h1>
         <h2 class="title text-center">Sign Up</h2>
         <form action="signup.php" method="POST" class="container">
             <label for="">Enter Username:</label>

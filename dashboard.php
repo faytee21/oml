@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once('User.php');
+    include_once("Reservation.php");
 
     // User::sessionInfo();
 
@@ -74,6 +75,10 @@
         ?>
         <div class="col-md-10">
           <h2>Welcome <span class="name"><?php echo User::getNamebyId($_SESSION['id']) ?></span>!</h2>
+          <?php 
+             if(!Reservation::checkUserReservation($_SESSION('id'))){    
+                     
+             }   ?>
           <p>You haven't Booked a room yet?</p>
           <a href="book_a_room.php">
             <button class="btn btn-mine">Book Here</button>
