@@ -1,7 +1,10 @@
 <?php
     session_start();
     require_once('User.php');
-    include_once("Reservation.php");
+    require_once("Room.php");
+    require_once("Reservation.php");
+
+    $rooms = new Room();
 
     // User::sessionInfo();
 
@@ -10,6 +13,9 @@
         header('Location: login.php');
         exit;
     }
+
+
+    $type = $_GET['type'];
 
 ?>
 <!DOCTYPE html>
@@ -73,58 +79,47 @@
         <?php
           include_once "includes/sidenav.php";
         ?>
-        <div class="col-md-10">
-          <h2>Welcome <span class="name"><?php echo User::getNamebyId($_SESSION['id']) ?></span>!</h2>
-          <div class="row">
-            <h3>Your Profile</h3>
-            <hr>
-            <div class="col-md-6">
-              <img src="./image/profile_image.png" class="img-fluid profile-image" alt="">
-              <?php
-              $info = User::getUser($_SESSION['id']);
-              ?>
-              <h4>Name: <?php             
-              // print_r($info);
-              echo $info["username"]; ?></h4>
-              <p>Email: <?php echo $info["email"] ?></p>
+        <div class="col-md-10 main_content">
+            <h2 class="text-center">Book Room</h2>
+            <form action="make_reservation.php?type=<?php echo $type?>" method="POST">
+                <div class="d-flex justify-content-center ">
+                    <?php
+                        $result = $rooms->getRooms($type);
+                        if ($result){
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<input type='radio' value='".$row['room_id']."' name='room_id' id=''><p>".$row['room_name']."</p>";
+                          }
+                        }
 
-              
-            </div>
-            <div class="col-md-6">
-              <h3>Reservation</h3>
-              <hr>
-              <div>
-              <?php 
-            if (!Reservation::checkUserReservation($_SESSION['id'])){    
-            ?>
-                <p>You haven't Booked a room yet?</p>
-                <a href="book_a_room.php">
-                  <button class="btn btn-mine">Book Here</button>
-                s</a>
-              <?php  
-             }else{
-              ?>
-                <p>You have booked a room</p>
-                <a href="view_reservation.php">
-                  <button class="btn btn-mine">View Reservation</button>
-                </a>
-                <?php
-                  $reservation_info = Reservation::getReservationByUserId($_SESSION['id']);
+                    ?>
 
-                
+                </div>  
+                <label for="datePicker">Select a start date:</label>
+                <input type="date" id="datePicker" name="start_date" min="" class="custom-datepicker">
+                <label for="datePicker2">Select End date</label>
+                <input type="date" id="datePicker2" name="end_date" min="" class="custom-datepicker">
+                <button class=""type="submit" name="book_room">Book Room</button>
+
+                <?php 
+
+                  if(isset($_POST['book_room'])){
+                    $room_id = $_POST['room_id'];
+                    $start_date = $_POST['start_date'];
+                    $end_date = $_POST['end_date'];
+                    $user_id = $_SESSION['id'];
+
+                    $res = new Reservation($user_id,$room_id, $start_date, $end_date);
+
+                    $result = $res->makeReservation();
+                    if($result){
+                      echo "<script>alert('Room booked successfully')</script>";
+                    }else{
+                      echo "<script>alert('Room not booked')</script>";
+                    }
+                  }
+
                 ?>
-
-                <p>Start day:<?php echo $reservation_info['start_date']; ?> </p>
-                <p>End day:<?php echo $reservation_info['end_date']; ?> </p>
-              <?php
-             }
-              ?>
-
-              </div>
-              
-            </div>
-          </div>
-
+            </form>
 
         </div>
       </div>
@@ -136,6 +131,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  <script src="./js/date.js"></script>
+  <script>
+
+  </script>
     
 </body>
 </html>

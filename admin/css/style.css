@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Montserrat:wght@100;300;500&family=Nunito:wght@200;400&display=swap');
+
+:root{
+    --primary-color: #0077B5;
+    --secondary-color: #4C212A;
+    --tertiary-color: #242e5a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+}
+
+.dash-container{
+    display: flex;
+}
+
+.dash-container .side_nav{
+    min-width: 200px;
+    width: 20%;
+    background-color: var(--tertiary-color);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.dash-container .side_nav ul{
+    padding: 0;
+    list-style: none;
+}
+
+.dash-container .side_nav ul li{
+    padding: 10px 20px;
+    border-bottom: 1px solid #555;
+}
+
+.dash-container .side_nav ul li:hover{
+    background-color: rgb(0, 47, 255);
+}
+
+.dash-container .side_nav ul li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+.dash-container .side_nav ul li a:hover{
+    color: hotpink;
+    transition: 0.3s;
+}
+
+
+.dash-container .main_content{
+    margin-left: 20%;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.dash_overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    /* display: none; */
+    z-index: 99;
+}
+
+
+.main_content form{
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.main_content form input{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.main_content form input[type="file"]{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.main_content form textarea{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.main_content form label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.main_content form select{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.main_content form select option{
+    padding: 10px;
+}
+
+.main_content form input[type="file"]{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.main_content form button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.products img{
+    /* background-color: red; */
+    height: 100px !important;
+}

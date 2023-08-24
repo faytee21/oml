@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+:root{
+    --primary-color: #0B8C38;
+    --secondary-color: #242e5a;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.profile-img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+
+nav{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+.navbar-brand{
+    color: var(--primary-color);
+}
+
+.requirements{
+    list-style: none;
+    padding: 0;
+}
+
+.requirements li a{
+    text-decoration: none;
+    color: white;
+}
+
+.requirements li{
+    text-align: center;
+    padding: 20px;
+}
+
+.requirements li:hover{
+    background-color: var(--primary-color);
+    width: 100%;
+    transition: 0.5s ease;
+}
+
+
+
+.floating-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.floating-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    animation: bounce 2s infinite;
+}
+
+
+.floating-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-mine{
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-mine:hover{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.main_content form{
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.main_content form input{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.main_content form input[type="file"]{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.main_content form textarea{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.main_content form label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.main_content form select{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.main_content form select option{
+    padding: 10px;
+}
+
+.main_content form input[type="file"]{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.main_content form button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.name{
+    text-transform: capitalize;
+}
+
+.profile-image{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+@media (min-width: 992px){
+
+    .before-requirements{
+        height: 100vh;
+    }
+
+}
