@@ -28,6 +28,14 @@
             return $result;
         }
 
+        //get room by id
+        public function getRoomById($id){
+            $sql = "SELECT * FROM rooms WHERE room_id = $id";
+            $result = $this->conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row;
+        }
+
         public function getRoomAmenities($amenities){
             $sql = "SELECT * FROM rooms WHERE amenities = '$amenities'";
             $result = $this->conn->query($sql);

@@ -2,8 +2,8 @@
           <ul class="requirements">
             <li><a href="dashboard.php">Dashboard</a></li>
             <li> <a href="">Check In/Check Out</a> </li>
-            <li><a href="">Book A Room</a></li>
-            <li> <a href="">See Booked Rooms</a></li>
-            <li><a href="">Book Conference Room/Event</a></li>
+            <li><a href="book_a_room.php">Book A Room</a></li>
+            <li> <a href="booked_rooms.php">See Booked Rooms</a></li>
+            <li><a href="book_conference_room.php">Book Conference Room/Event</a></li>
           </ul>
         </div>

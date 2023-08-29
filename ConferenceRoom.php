@@ -1,14 +1,24 @@
 <?php
+    include_once './config.php';
 
-class ConferenceRoom extends Room {
-    // Additional properties specific to conference rooms
+    class ConferenceRoom {
+        public $conn;
 
-    public function __construct($roomId, $roomType, $capacity, $amenities) {
-        parent::__construct($roomId, $roomType, $capacity, $amenities);
-        // Initialize conference room specific properties here
+        public function __construct() {
+            $this->conn = $GLOBALS['conn'];
+        }
+
+        public function getConferenceRooms(){
+            $sql = "SELECT * FROM conference_rooms";
+            $result = $this->conn->query($sql);
+            return $result;
+        }
+
+        public function getConferenceRoom($id){
+            $sql = "SELECT * FROM conference_rooms WHERE conference_room_id = $id";
+            $result = $this->conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row;
+        }
     }
-
-    // Add additional methods and getters/setters if needed
-}
-
 ?>

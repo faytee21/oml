@@ -13,6 +13,23 @@ CREATE TABLE IF NOT EXISTS users (
     reg_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- forgot password table set to expire the token after 1 hour for mysql database
+CREATE TABLE IF NOT EXISTS forgot_password (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    token VARCHAR(100) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- alter table users to include attributes such as id number with a maximum of 8 digits, phone number with a maximum of 10 digits, phone number of a maximum of 15 digits
+-- ALTER TABLE users ADD COLUMN id_number INT(8) NOT NULL;
+-- ALTER TABLE users ADD COLUMN phone_number INT(10) NOT NULL;
+
+
 -- Rooms table
 CREATE TABLE IF NOT EXISTS rooms (
     room_id INT PRIMARY KEY AUTO_INCREMENT,

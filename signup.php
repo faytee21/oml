@@ -50,7 +50,7 @@
 
             
             <div class="register-link">
-                <p>Already have an account? <a href="login.html">Log In</a></p>
+                <p>Already have an account? <a href="login.php">Log In</a></p>
             </div>
 <!--icon links <i class="bi bi-envelope-fill"></i>
 
