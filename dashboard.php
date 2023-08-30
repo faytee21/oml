@@ -49,7 +49,7 @@
               // print_r($info);
               echo $info["username"]; ?></h4>
               <p>Email: <?php echo $info["email"] ?></p>
-              <a href="">
+              <a href="profile.php">
                 <button class="btn btn-mine">Complete Profile</button>
               </a>
               
@@ -69,7 +69,7 @@
              }else{
               ?>
                 <p>You have booked a room</p>
-                <a href="view_reservation.php">
+                <a href="booked_rooms.php">
                   <button class="btn btn-mine">View Reservation</button>
                 </a>
                 <?php
