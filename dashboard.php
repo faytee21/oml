@@ -69,7 +69,7 @@
              }else{
               ?>
                 <p>You have booked a room</p>
-                <a href="booked_rooms.php">
+                <a href="view_reservation.php">
                   <button class="btn btn-mine">View Reservation</button>
                 </a>
                 <?php
