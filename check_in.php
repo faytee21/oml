@@ -37,17 +37,18 @@
           include_once "includes/sidenav.php";
         ?>
         <div class="col-md-10">
+        <h1 class="text-center">Check In</h1>
           <div class="main_content">
+            <form action="" method="post">
             <div class="row">
               <div class="col-md-6">
-                <h1>Check In</h1>
                 <?php
                     if (!User::checkIfUserIdentityIsFilled($_SESSION['id'])){
                       echo "<script>alert('Complete your first')</script> <a href='profile.php'><button class='btn btn-mine'>Complete your profile</button></a>";
                       exit;
                     }
                   ?>
-                <form action="">
+                
                   <!-- <input type="text" name="reservation_id" id="" placeholder="Enter Reservation ID"> -->
                   <?php
                     $rooms = Reservation::getReservationByUserId($_SESSION['id']);
@@ -55,7 +56,7 @@
                     $Room = new Room();
                     $one_room = $Room->getRoomById($rooms['room_id']);
 
-                    echo $one_room['room_name'];
+                    // echo $one_room['room_name'];
                     
                     // print_r($one_room);
                   ?>
@@ -77,13 +78,24 @@
                     <option value="yes">YES</option>
                     <option value="NO">NO</option>  
                   </select>
-
-                  <input type="submit" class="btn btn-mine" value="PROCEED TO MPESA">
+                
+                  <input type="submit" class="btn btn-mine" value="CONFIM CHECK IN">
                   <!-- <img src="./image/MPESA_LOGOpng" alt="" class="img-fluid"> -->
-                </form>
+                
+              </div>
+              <div class="col-md-6">
+              <!-- <hr> -->
+                  <h2>Terms and Conditions</h2>
+                  <p>You agree to Agreements and Policies of the Hotel</p>
+                  <select name="" id="">
+                    <option value="">Select</option>
+                    <option value="yes">YES</option>
+                    <option value="NO">NO</option>
+                  </select>
               </div>
                             
             </div>
+                  </form>
             <!-- <input type="radio" name="check_in" id="" value="physical">Physical Check In
             <input type="radio" name="check_in" id="" value="online">Online Check In -->
           </div>
