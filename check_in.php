@@ -42,15 +42,13 @@
               <div class="col-md-6">
                 <h1>Check In</h1>
                 <?php
-                    if (User::checkIfUserIdentityIsFilled($_SESSION['id'])){
-                      echo "Welcome";
-                    } else {
+                    if (!User::checkIfUserIdentityIsFilled($_SESSION['id'])){
                       echo "<script>alert('Complete your first')</script> <a href='profile.php'><button class='btn btn-mine'>Complete your profile</button></a>";
                       exit;
                     }
                   ?>
                 <form action="">
-                  <input type="text" name="reservation_id" id="" placeholder="Enter Reservation ID">
+                  <!-- <input type="text" name="reservation_id" id="" placeholder="Enter Reservation ID"> -->
                   <?php
                     $rooms = Reservation::getReservationByUserId($_SESSION['id']);
                     // print_r($rooms);
@@ -61,7 +59,27 @@
                     
                     // print_r($one_room);
                   ?>
+                  <h2>Check in Room Selected</h2>
+                  <select name="" id="">
+                    <option value="<?php echo $one_room['room_id']; ?>" selected><?php echo $one_room['room_name'] ?></option>
+                  </select>
+                  <hr>
+                  <?php
+                    $user = User::getUserIdentity($_SESSION['id']);
+                    // print_r($user);
+                  ?>
+                  <h2>Confirm personal Info</h2>
+                  <p><b>Name:</b> <?php echo $user['first_name']." ".$user['last_name']; ?></p>
+                  <p><b>ID Number:</b> <?php echo $user['id_number']; ?></p>
+                  <p><b>Phone Number:</b> <?php echo $user['phone_number']; ?></p>
+                  <select name="" id="">
+                    <option value="">Select</option>
+                    <option value="yes">YES</option>
+                    <option value="NO">NO</option>  
+                  </select>
 
+                  <input type="submit" class="btn btn-mine" value="PROCEED TO MPESA">
+                  <!-- <img src="./image/MPESA_LOGOpng" alt="" class="img-fluid"> -->
                 </form>
               </div>
                             
@@ -69,20 +87,6 @@
             <!-- <input type="radio" name="check_in" id="" value="physical">Physical Check In
             <input type="radio" name="check_in" id="" value="online">Online Check In -->
           </div>
-                  <div class="radio">
-                    <div class="radio-group">
-                      <label class="radio-button">
-                        <input type="radio" name="option" value="option1"> Option 1
-                      </label>
-                      <label class="radio-button">
-                        <input type="radio" name="option" value="option2"> Option 2
-                      </label>
-                      <label class="radio-button">
-                        <input type="radio" name="option" value="option3"> Option 3
-                      </label>
-                    </div>
-
-                  </div>
 
 
         </div>

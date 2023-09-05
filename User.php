@@ -202,6 +202,14 @@ class User {
         }
     }
 
+    public static function getUserIdentity($id){
+        global $conn;
+        $sql = "SELECT * FROM user_identity WHERE user_id = $id";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
 }
 
 
