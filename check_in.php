@@ -36,7 +36,28 @@
           include_once "includes/sidenav.php";
         ?>
         <div class="col-md-10">
-          
+          <div class="main_content">
+            <div class="row">
+              <div class="col-md-6">
+                <h1>Check In</h1>
+                <?php
+                    if (User::checkIfUserIdentityIsFilled($_SESSION['id'])){
+                      echo "Welcome";
+                    } else {
+                      echo "<script>alert('Complete your first')</script> <a href='profile.php'><button class='btn btn-mine'>Complete your profile</button></a>";
+                      exit;
+                    }
+                  ?>
+                <form action="">
+                  <input type="text" name="reservation_id" id="" placeholder="Enter Reservation ID">
+                </form>
+              </div>
+                            
+            </div>
+            <!-- <input type="radio" name="check_in" id="" value="physical">Physical Check In
+            <input type="radio" name="check_in" id="" value="online">Online Check In -->
+          </div>
+
 
 
         </div>

@@ -56,7 +56,10 @@
             <div class="main_content">
               <h2 class="text-center">Complete Profile here</h2>
               <form action="">
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
                 <input type="number" class="" placeholder="ID NUMBER">
+                <input type="text" placeholder="Phone Number">
               </form>
             </div>
 

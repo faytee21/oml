@@ -113,3 +113,16 @@ CREATE TABLE IF NOT EXISTS admin_images (
     image_reg_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (admin_id) REFERENCES Admin(admin_id)
 );
+
+CREATE TABLE IF NOT EXISTS user_identity(  
+    user_identity_id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+    user_id INT unique,
+    first_name VARCHAR(255) NOT NULL COMMENT 'First Name',
+    last_name VARCHAR(255) NOT NULL COMMENT 'Last Name',
+    id_number INT NOT NULL COMMENT 'ID Number',
+    phone_number VARCHAR(255) NOT NULL COMMENT 'Phone Number',
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- create_time DATETIME COMMENT 'Create Time',
+
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+) COMMENT '';

@@ -165,6 +165,20 @@ class User {
         return $row['username'];
     }
 
+    public static function checkIfUserIdentityIsFilled($id){
+        global $conn;
+        if ($stmt = $conn->prepare("SELECT * FROM user_identity WHERE user_id = ?")){
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows > 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
 }
 
 
