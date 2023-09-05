@@ -2,6 +2,7 @@
     session_start();
     require_once('User.php');
     include_once("Reservation.php");
+    require_once('Room.php');
 
     // User::sessionInfo();
 
@@ -50,6 +51,17 @@
                   ?>
                 <form action="">
                   <input type="text" name="reservation_id" id="" placeholder="Enter Reservation ID">
+                  <?php
+                    $rooms = Reservation::getReservationByUserId($_SESSION['id']);
+                    // print_r($rooms);
+                    $Room = new Room();
+                    $one_room = $Room->getRoomById($rooms['room_id']);
+
+                    echo $one_room['room_name'];
+                    
+                    // print_r($one_room);
+                  ?>
+
                 </form>
               </div>
                             
@@ -57,7 +69,20 @@
             <!-- <input type="radio" name="check_in" id="" value="physical">Physical Check In
             <input type="radio" name="check_in" id="" value="online">Online Check In -->
           </div>
+                  <div class="radio">
+                    <div class="radio-group">
+                      <label class="radio-button">
+                        <input type="radio" name="option" value="option1"> Option 1
+                      </label>
+                      <label class="radio-button">
+                        <input type="radio" name="option" value="option2"> Option 2
+                      </label>
+                      <label class="radio-button">
+                        <input type="radio" name="option" value="option3"> Option 3
+                      </label>
+                    </div>
 
+                  </div>
 
 
         </div>

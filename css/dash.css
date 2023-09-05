@@ -169,8 +169,30 @@ nav{
     width: 100px;
 }
 
-
-
+/* Hide the default radio input */
+.radio-button input[type="radio"] {
+    display: none;
+  }
+  
+  /* Style the label to look like a button */
+  .radio-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+  }
+  
+  /* Style the label when the radio input is checked */
+  .radio-button input[type="radio"]:checked + label {
+    background-color: #007BFF;
+    color: #fff;
+    border: 1px solid #007BFF;
+  }
+  
 @keyframes bounce {
     0%, 100% {
         transform: translateY(0);
