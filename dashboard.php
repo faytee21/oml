@@ -49,9 +49,15 @@
               // print_r($info);
               echo $info["username"]; ?></h4>
               <p>Email: <?php echo $info["email"] ?></p>
-              <a href="profile.php">
-                <button class="btn btn-mine">Complete Profile</button>
-              </a>
+              <?php
+                    if (User::checkIfUserIdentityIsFilled($_SESSION['id'])){
+                      echo "Welcome To 489Hotels & Suits";
+                    } else {
+                      echo "<a href='profile.php'>
+                      <button class='btn btn-mine'>Complete Profile</button>
+                    </a>";
+                    }
+                  ?>
               
             </div>
             <div class="col-md-6">

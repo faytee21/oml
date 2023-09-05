@@ -179,6 +179,29 @@ class User {
         }
     }
 
+    public static function addUserIdentity($id, $first_name, $last_name, $id_number, $phone_number){
+        global $conn;
+        if ($stmt = $conn->prepare("SELECT * FROM user_identity WHERE user_id = ?")){
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows > 0){
+                return "Info exists";
+            } else {
+                $sql = "INSERT INTO user_identity (user_id, first_name, last_name, id_number, phone_number) VALUES (?, ?, ?, ?, ?)";
+                if ($stmt = $conn->prepare($sql)){
+                    $stmt->bind_param("sssss", $id, $first_name, $last_name, $id_number, $phone_number);
+                    $stmt->execute();
+                    $stmt->close();
+        
+                    return "User Identity added successfully";
+                } else {
+                    return "Error: $sql $conn->error";
+                }
+            }
+        }
+    }
+
 }
 
 

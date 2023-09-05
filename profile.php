@@ -52,14 +52,35 @@
                  <p><b>Your email: </b><?php echo $user["email"]; ?></p>
                 </div>
             </div>
+            
+            <hr>
+            <?php
+                    if (User::checkIfUserIdentityIsFilled($_SESSION['id'])){
+                      echo "Welcome";
+                    } else {
+
+                  ?>
 
             <div class="main_content">
               <h2 class="text-center">Complete Profile here</h2>
-              <form action="">
-                <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Last Name">
-                <input type="number" class="" placeholder="ID NUMBER">
-                <input type="text" placeholder="Phone Number">
+              <form action="profile.php" method="POST">
+                <input type="text" placeholder="First Name" name="first_name" required>
+                <input type="text" placeholder="Last Name" name="last_name" required>
+                <input type="number" class="" placeholder="ID NUMBER" min="0" name="id_number" required>
+                <input type="text" placeholder="Phone Number" name="phone_number" required>
+                <input type="submit" class="btn btn-mine" value="UPDATE NOW" name="submit">
+                <?php
+                  if (isset($_POST['submit'])){
+                    $first_name = trim($_POST['first_name']);
+                    $last_name = trim($_POST['last_name']);
+                    $id_number = trim($_POST['id_number']);
+                    $phone_number = trim($_POST['phone_number']);
+
+                    $user = User::addUserIdentity($_SESSION['id'], $first_name, $last_name, $id_number, $phone_number);
+                    echo "<script>alert('$user')</script>";
+                  }
+                    }
+                ?>
               </form>
             </div>
 
