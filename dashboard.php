@@ -95,6 +95,34 @@
             </div>
           </div>
 
+          <div>
+            <hr>
+            <h2 class="text-center">Ready to book?</h2>
+            <form action="">
+              <div class="book">
+                <div>
+                  <label for="">Check In:</label>
+                  <input type="date">
+                </div>
+                <div>
+                  <label for="">Check Out:</label>
+                  <input type="date">
+                </div>
+                <div>
+                  <label for="">ROom Type:</label>
+                  <select name="" id="">
+                    <option value="">Select Room Type</option>
+                    <option value="">Standard Room</option>
+                    <option value="">Deluxe Room</option>
+                    <option value="">Suite Room</option>
+                  </select>
+                </div>
+                <div>
+                  <button class="">Book Now</button>
+                </div>  
+              </div>
+            </form>
+          </div>
 
         </div>
       </div>

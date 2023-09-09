@@ -115,11 +115,13 @@
             <form action="standard_room.php" method="POST">
               <h2 class="text-center">Check Availability</h2>
               <label for="">Paste Room Id Here</label>
-              <input type="number" name="room_id" min="0" placeholder="">
+              <input type="number" name="room_id" min="0" placeholder="Paste Room ID here">
+
+
               <label for="">Check In Date</label>
-              <input type="date" name="check_in_date" id="">
+              <input type="date" id="datePicker" name="check_in_date" id="">
               <label for="">Check Out Date</label>
-              <input type="date" name="check_out_date" id="">
+              <input type="date" id="datePicker2" name="check_out_date" id="">
               <input type="submit" class="btn btn-mine" value="Check Availability">
                 <?php
                   if(isset($_POST['room_id']) && isset($_POST['check_in_date']) && isset($_POST['check_out_date'])){
@@ -157,6 +159,8 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="./js/date.js"></script>
+
   <script>
     //copy room id to clipboard
     $(document).ready(function(){
@@ -168,7 +172,7 @@
         $(this).css('color', 'green');
         // $(this).next().text('Copied to clipboard');
         // $(this).next().fadeIn(1000).text('Copied to clipboard').fadeOut(2000);
-        $(".tt").html("<p class='tip'>Copied to clipboard</p>").fadeIn(1000).fadeOut(2000);
+        $(".tt").html("<p class='tip'> <i class='bi bi-check-circle-fill'></i> Copied to clipboard</p>").fadeIn(1000).fadeOut(2000);
       });
     });
   </script>

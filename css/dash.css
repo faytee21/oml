@@ -217,14 +217,65 @@ nav{
     z-index: 11;
   }
 
-    @keyframes tip {
+  /* dashboard form */
+
+  form .book{
+    /* display: inline-block; */
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+.book {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #242e5a;
+}
+.book div {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.book div label{
+    color: azure;
+}
+.book div button{
+    background-color: #007BFF;
+    padding: 100%;
+    border: none;
+}
+
+.book input::placeholder{
+    color: grey;
+}
+
+.book input, .book select{
+    border: 2px solid rgba(200, 200, 200, 0.4);
+    color: azure;
+    padding: 20px;
+    background-color: #242e5a;
+}
+.book input:focus{
+    border: none;
+    outline: 2px solid rgba(200, 200, 200, 0.5);
+
+}
+.book select option{
+    background-color: #242e5a;
+    color: azure;
+}
+
+
+
+@keyframes tip {
         0%, 100% {
             transform: translateY(0);
         }
         50% {
             transform: translateY(-20px);
         }
-    }
+}
 
 @keyframes bounce {
     0%, 100% {

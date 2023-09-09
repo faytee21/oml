@@ -66,9 +66,30 @@
                 $stmt->bind_result($count);
                 $stmt->fetch();
             } else {
-                echo "Error with SQL statement";
+                return "Error with SQL statement";
             }
             return $count == 0;
+        }
+
+        public function checkListOfRooms($room_id, $check_in_date, $check_out_date, $room_type){
+            $isAvailable = $this->checkRoomAvailability($room_id, $check_in_date, $check_out_date);
+            if ($isAvailable){
+                $rooms = [];
+                if ($stmt = $this->conn->prepare("SELECT COUNT(*) FROM reservations WHERE room_id = ? AND start_date <= ? AND end_date >= ?")) {
+                    $stmt->bind_param("iss", $room_id, $check_out_date, $check_in_date);
+                    $stmt->execute();
+                    $stmt->bind_result($rooms);
+                    $stmt->fetch();
+
+                    return $rooms;
+                    
+                    // return 
+                } else {
+                    return "Error with SQL statement";
+                }           
+            } else {
+                return false;
+            }
         }
 
 
