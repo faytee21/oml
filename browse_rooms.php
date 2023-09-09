@@ -85,20 +85,8 @@
                             <img src="./image/out1.jpg" class="img-fluid" alt="">
                         </div>
                         <div class="col-md-6">
-                            <p>Our standard rooms are equipped with a double bed. They contain a private bathroom and a spacious wardrobe</p>
-                            <h4>Available amenities</h4>
-                            <ul>
-                                <li>Double bed</li>
-                                <li>Free Wi-Fi</li>
-                                <li>Air conditioning</li>
-                                <li>Rain shower</li>
-                                <li>Study table</li>
-                                <li>Flat screen TV</li>
-                                <li>Mosquito net</li>
-                                <li>Spacious wardrobe</li>
-                                <li>24/7 Room service</li>
-                            </ul>
-                            <p>Ksh. <?php echo $room->getRoomAveragePrice("standard_room"); ?></p>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nemo debitis. Repellat, dolorem vitae magni perspiciatis ea ipsum sunt asperiores itaque. Ea non saepe numquam molestias asperiores ullam ipsa exercitationem.</p>    
+                            <p><?php echo $room->getRoomAveragePrice("standard_room"); ?></p>
                             <p>Available: <?php echo $room->getRoomTypeCount("standard_room"); ?></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="standard_room.php">
@@ -124,7 +112,7 @@
                         <div class="col-md-6">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nemo debitis. Repellat, dolorem vitae magni perspiciatis ea ipsum sunt asperiores itaque. Ea non saepe numquam molestias asperiores ullam ipsa exercitationem.</p>    
                             <p><?php echo $room->getRoomAveragePrice("deluxe _room"); ?></p>
-                            <p>Available: <?php echo $room->getRoomTypeCount("deluxe _room"); ?></p>
+                            <p>Available: <?php echo $room->getRoomTypeCount("standard_room"); ?></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="standard_room.php">
                                     <button class="btn btn-warning">See  More</button>
@@ -147,7 +135,7 @@
                         <div class="col-md-6">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nemo debitis. Repellat, dolorem vitae magni perspiciatis ea ipsum sunt asperiores itaque. Ea non saepe numquam molestias asperiores ullam ipsa exercitationem.</p>    
                             <p><?php echo $room->getRoomAveragePrice("suite_room"); ?></p>
-                            <p>Available: <?php echo $room->getRoomTypeCount("suite_room"); ?></p>
+                            <p>Available: <?php echo $room->getRoomTypeCount("standard_room"); ?></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="standard_room.php">
                                     <button class="btn btn-warning">See  More</button>

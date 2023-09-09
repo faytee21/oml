@@ -193,6 +193,39 @@ nav{
     border: 1px solid #007BFF;
   }
   
+  .rooms_present{
+    background-color: azure;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+
+.bi-clipboard{
+    cursor: pointer;
+}
+
+  .tip{
+    /* show green tip on the top right of the screen and disappear after 2 seconds */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #0B8C38;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    animation: tip 2s ease;
+    z-index: 11;
+  }
+
+    @keyframes tip {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
 @keyframes bounce {
     0%, 100% {
         transform: translateY(0);

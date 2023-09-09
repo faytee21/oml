@@ -44,10 +44,33 @@
 
         // get rooms of a specific type
         public function getRooms($type){
-            $sql = "SELECT * FROM rooms WHERE room_type = '$type'";
-            $result = $this->conn->query($sql);
-            return $result;
+            // $sql = "SELECT * FROM rooms WHERE room_type = `$type`";
+            // $result = $this->conn->query($sql);
+            // return $result;
+
+            if($stmt = $this->conn->prepare("SELECT * FROM rooms WHERE room_type = ?")){
+                $stmt->bind_param("s", $type);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result;
+            }
         }
+
+        // check if room using the room_id is available given the room checkin date and checkout date
+        public function checkRoomAvailability($room_id, $check_in_date, $check_out_date){
+            // Prepare the SQL query to check for overlapping reservations
+            $count = 0;
+            if ($stmt = $this->conn->prepare("SELECT COUNT(*) FROM reservations WHERE room_id = ? AND start_date <= ? AND end_date >= ?")) {
+                $stmt->bind_param("iss", $room_id, $check_out_date, $check_in_date);
+                $stmt->execute();
+                $stmt->bind_result($count);
+                $stmt->fetch();
+            } else {
+                echo "Error with SQL statement";
+            }
+            return $count == 0;
+        }
+
 
         public function getRoomTypeCount($type){
             $sql = "SELECT COUNT(*) FROM rooms WHERE room_type = '$type'";
