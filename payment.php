@@ -12,8 +12,8 @@
 
     //check is session is valid
     if(!isset($_SESSION['id'])){
-        exit(header('Location: make_researvation.php'));
-        
+        header('Location: make_researvation.php');
+        exit;        
     }
 
 ?>

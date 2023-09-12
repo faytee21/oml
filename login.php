@@ -2,6 +2,10 @@
     session_start();
     include_once "User.php";
 
+    if(isset($_GET['message'])){
+        $message = $_GET['message'];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +30,7 @@
 
             <div class="remember-forgot">
                 <label for=""><input type="checkbox">Remember me</label>
-                <a href="#">Forgot password?</a>
+                <a href="forgot_password.php">Forgot password?</a>
             </div>
             
             <button type="submit" class="btn">Log In</button>

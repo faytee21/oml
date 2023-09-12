@@ -31,17 +31,15 @@
 -->
         </form>
         <?php
-            if(isset($_POST['email']) && isset($_POST['password'])){
+            if(isset($_POST['email'])) {
                 $email = $_POST['email'];
-                $password = $_POST['password'];
 
-                if (empty($email) || empty($password)) {
+                if (empty($email)) {
                     return "complete registration form";
                 } else {
                     $email = trim($email);
-                    $password = trim($password);
 
-                    echo User::login($email, $password);
+                    echo User::forgotPassword($email);
                 }
 
             }

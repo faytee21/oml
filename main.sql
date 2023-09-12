@@ -126,3 +126,6 @@ CREATE TABLE IF NOT EXISTS user_identity(
 
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 ) COMMENT '';
+
+ALTER TABLE users ADD COLUMN reset_token VARCHAR(100) NOT NULL AFTER password;
+ALTER TABLE users ADD COLUMN reset_token_expires_at DATETIME NOT NULL AFTER reset_token;

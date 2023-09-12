@@ -1,6 +1,7 @@
 <?php
 
 require_once("./config.php");
+require_once("./Mail.php");
 
 
 class User {
@@ -202,12 +203,113 @@ class User {
         }
     }
 
+    //get user id by email
+    public static function getUserId($email){
+        global $conn;
+        $sql = "SELECT user_id FROM users WHERE email = '$email'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['user_id'];
+    }
+
+    // get user email by id
+    public static function getUserEmail($id){
+        global $conn;
+        $sql = "SELECT email FROM users WHERE user_id = '$id'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['email'];
+    }
+
     public static function getUserIdentity($id){
         global $conn;
         $sql = "SELECT * FROM user_identity WHERE user_id = $id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         return $row;
+    }
+
+    public static function resetPassword($id, $password){
+        global $conn;
+        if (User::checkExpiryTime($id)){
+            echo "Token expired";
+            exit;
+        } else {
+            $sql = "UPDATE users SET password = ? WHERE user_id = ?";
+            if ($stmt = $conn->prepare($sql)){
+                $password = password_hash($password,PASSWORD_DEFAULT);
+                $stmt->bind_param("ss", $password, $id);
+                $stmt->execute();
+                $stmt->close();
+    
+                return true;
+            } else {
+                return "Error: $sql $conn->error";
+            }
+        }
+
+    }
+
+    public static function testTime(){
+        $current_time = date("Y-m-d H:i:s");
+        $token_expiry_time = date("Y-m-d H:i:s", strtotime('+1 hour'));
+        echo $current_time;
+        echo "<br>";
+        echo $token_expiry_time;
+    }
+
+    // check if the rese_token_expires_at is greater than the current time
+    public static function checkExpiryTime($user_id){
+        global $conn;
+        $sql = "SELECT reset_token_expires_at FROM users WHERE user_id = '$user_id'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $expiry_time = $row['reset_token_expires_at'];
+        $current_time = date("Y-m-d H:i:s");
+        if ($expiry_time > $current_time){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function forgotPassword($email){
+        global $conn;
+        // check if mail exists in the users table
+        if ($stmt = $conn->prepare("SELECT * FROM users WHERE email = ?")){
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            $user_id = User::getUserId($email);
+            // $stmt->bind_result($user_id, $username, $password, $email, $reset_token, $reset_token_expires_at, $reg_time);
+            // $info = $stmt->fetch();
+            // print_r($stmt);
+            if ($stmt->num_rows > 0){
+                $reset_token = bin2hex(random_bytes(32));
+                $token_expiry_time = date("Y-m-d H:i:s", strtotime('+1 hour'));
+
+                // add token to database
+                if ($stmt = $conn->prepare("UPDATE users SET reset_token = ?, reset_token_expires_at = ? WHERE email = ?")){
+                    $stmt->bind_param("sss", $reset_token, $token_expiry_time, $email);
+                    $stmt->execute();
+                    $stmt->close();
+
+                    $mail = new Mail();
+                    $info = $mail->forgotPasswordMail($user_id, $email, $reset_token);
+                    if ($info == true){
+                        return "Email sent";
+                    } else {
+                        return "Email not sent";
+                    }
+                } else {
+                    return "Some error";
+                }
+
+            } else {
+                return "Email does not exist";
+            }
+        }
     }
 
 }
