@@ -2,6 +2,6 @@ vendor/
 fpdf/
 PDF.php
 pdf_test.php
-mail_test.php
+Mail.php
 
 

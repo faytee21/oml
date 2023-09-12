@@ -12,8 +12,8 @@
 
     //check is session is valid
     if(!isset($_SESSION['id'])){
-        header('Location: login.php');
-        exit;
+        exit(header('Location: make_researvation.php'));
+        
     }
 
 ?>
@@ -48,7 +48,7 @@
                         <img src="./image/MPESA_LOGOpng" class="mpesa img-fluid w-10" alt="">
                         Pay With M-Pesa
                     </button>
-                    <a href="PDF.php?room_id=<?php echo $room_id ?>"><button class="btn btn-mine">Print Receipt</button></a>
+                    <a href="send_receipt.php?room_id=<?php echo $room_id ?>"><button class="btn btn-mine">Print Receipt</button></a>
                 </p>
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
