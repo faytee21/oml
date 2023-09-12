@@ -266,6 +266,9 @@ nav{
     color: azure;
 }
 
+.mpesa{
+    width: 80px;
+}
 
 
 @keyframes tip {

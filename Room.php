@@ -71,25 +71,29 @@
             return $count == 0;
         }
 
-        public function checkListOfRooms($room_id, $check_in_date, $check_out_date, $room_type){
-            $isAvailable = $this->checkRoomAvailability($room_id, $check_in_date, $check_out_date);
-            if ($isAvailable){
-                $rooms = [];
-                if ($stmt = $this->conn->prepare("SELECT COUNT(*) FROM reservations WHERE room_id = ? AND start_date <= ? AND end_date >= ?")) {
-                    $stmt->bind_param("iss", $room_id, $check_out_date, $check_in_date);
-                    $stmt->execute();
-                    $stmt->bind_result($rooms);
-                    $stmt->fetch();
-
-                    return $rooms;
-                    
-                    // return 
-                } else {
-                    return "Error with SQL statement";
-                }           
+        public function checkRoomsNotInDate($room_id,$check_in_date, $check_out_date){
+            $count = 0;
+            if ($stmt = $this->conn->prepare("SELECT COUNT(*) FROM reservations WHERE room_id = ? AND NOT (start_date <= ? AND end_date >= ?)")) {
+                $stmt->bind_param("iss", $room_id, $check_out_date, $check_in_date);
+                $stmt->execute();
+                $stmt->bind_result($count);
+                $stmt->fetch();
+                return $count;
             } else {
-                return false;
+                return "Error with SQL statement";
             }
+        }
+
+        public function checkListOfRooms($check_in_date, $check_out_date, $room_type){
+            $rooms = $this->getRooms($room_type);
+            $available_rooms = array();
+            while($row = $rooms->fetch_assoc()){
+                if($this->checkRoomAvailability($row['room_id'], $check_in_date, $check_out_date)){
+                    array_push($available_rooms, $row);
+                }
+            }
+            return $available_rooms;
+
         }
 
 

@@ -2,6 +2,7 @@
     session_start();
     require_once('User.php');
     include_once("Reservation.php");
+    require_once('Room.php');
 
     // User::sessionInfo();
 
@@ -98,30 +99,67 @@
           <div>
             <hr>
             <h2 class="text-center">Ready to book?</h2>
-            <form action="">
+            <form action="dashboard.php" method="POST">
               <div class="book">
                 <div>
                   <label for="">Check In:</label>
-                  <input type="date">
+                  <input type="date" name="check_in_date">
                 </div>
                 <div>
                   <label for="">Check Out:</label>
-                  <input type="date">
+                  <input type="date" name="check_out_date">
                 </div>
                 <div>
                   <label for="">ROom Type:</label>
-                  <select name="" id="">
-                    <option value="">Select Room Type</option>
-                    <option value="">Standard Room</option>
-                    <option value="">Deluxe Room</option>
-                    <option value="">Suite Room</option>
+                  <select name="room_type" id="">
+                    <option value="" selected>Select Room Type</option>
+                    <option value="standard_room">Standard Room</option>
+                    <option value="deluxe_room">Deluxe Room</option>
+                    <option value="suite_room">Suite Room</option>
                   </select>
                 </div>
                 <div>
-                  <button class="">Book Now</button>
+                  <button name="book" class="">Book Now</button>
                 </div>  
               </div>
             </form>
+            <?php
+              if (isset($_POST['book'])){
+                $check_in_date = $_POST['check_in_date'];
+                $check_out_date = $_POST['check_out_date'];
+                $room_type = $_POST['room_type'];
+
+                $room = new Room();
+                $rooms = $room->checkListOfRooms($check_in_date, $check_out_date, $room_type);
+                // print_r($rooms);
+
+
+              ?>
+
+              <div class="row">
+                <!-- <div class="col-md-4"> -->
+                  <?php
+                    foreach($rooms as $room){
+                      echo "<div class='col-md-4 room'>";
+                      echo "<h3>".$room['room_type']."</h3>";
+                      echo "<p>Price: Ksh. ".$room['price']."</p>";
+                      echo "<p>Capacity: ".$room['capacity']."</p>";
+                      echo "<p>Bed: ".$room['amenities']."</p>";
+                      echo "<p>Room ID: ".$room['room_id']."</p>";
+                      echo "<a href='confirm_booking_details.php?room_id=".$room['room_id']."'><button class='btn btn-mine w-100'>Book</button></a>";
+                      echo "</div>";
+                    }
+                  ?>
+                <!-- </div> -->
+              </div>
+
+              <?php
+                // print_r($rooms);
+              } else {
+                echo "Please fill in the form to book a room";
+              }
+
+            ?>
           </div>
 
         </div>
